@@ -1,43 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>FeedBack Page</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>FeedBack</title>
 </head>
 <body>
-	<h1>FEED BACK</h1>
-	<br>
+	<div style="width: 100%; ">
+		
+		<div class="left-div">
+			<div style="height: 180px; text-align:center;">
+				<img src="shield.jpg" style="width:120px;height: 180px;margin-bottom: 0px;">
+			</div>
+			<div style="text-align:center;">
+				<h2 style="margin-top: 50px;">HOME</h2>
+				<h2>
+					<a href="" style="color: black;">ABOUT</a>
+				</h2>
+				<h2>LOCATION</h2>
+				<h2>
+					<a href="booktable.html"  style="color: black;">BOOK TABLE</a>
+				</h2>
+				<h2>
+					<a href="" style="color: black;">ORDER ONLINE</a>
+				</h2>
+				<h2>
+					<a href="" style="color: black;">FEED BACK</a>
+				</h2>
+			</div>
+			<div class="footer" style="text-align: center;">
+				<a href="#"><i class="fab fa-facebook-f"></i></a>
+				<a href="#"><i class="fab fa-instagram"></i></a>
+				<a href="#"><i class="fab fa-tiktok"></i></a>
+			</div>
+		</div>
 
-	<form method="POST">
-		<label for="name">Name*</label>
-		<br>
-		<input class="textInput" type="text" name="name" id="name" placeholder="Your Name...">
-		<br>
-		<br>
-		<label for="email">Email Address*</label>
-		<br>
-		<input class="textInput" type="text" name="email" id="email" placeholder="Your Email Address...">
-		<br>
-		<br>
-		<label>Message*</label>
-		<br>
-		<textarea class="textInput" rows="6" placeholder="Your Message..."></textarea>
-		<br>
-		<br>
-		<input type="submit" name="submit" value="Submit">
-	</form>
+
+		<div class="right-div" >
+			<div style="text-align: center;margin: auto;"><h1>FEED BACK</h1></div>
+
+			<div>
+			<form method="POST">
+
+				<div style="margin-bottom: 50px; width: 100%;">
+				<label id="nameLabel" for="name" style="color:#008080">Name*</label>
+				<br>
+				<br>
+				<input class="textInput" style="width:90%;height:35px;padding-left: 20px;"  type="textInput" name="name" id="name" placeholder="Your Name..." onchange="validateName(this)" required  >
+				<p id="nameErrorLabel" style="font-size: 75%;visibility: hidden;margin-top: 10px;color: rgb(200, 0, 0);">Please Fill this Field</p>
+				</div>
+
+				<div style="margin-bottom: 50px; width: 100%;">
+				<label id="emailLabel" for="email" style="color:#008080">Email Address*</label>
+				<br>
+				<br>
+				<input class="textInput" style="width:90%;height:35px;padding-left:20px"  type="email" name="email" id="email" placeholder="Your Email Address..." required onchange="validateEmail(this)">
+				<p id="emailErrorLabel" style="font-size: 75%;visibility: hidden;margin-top: 10px;color: rgb(255, 0, 0);">Email is not Valid</p>
+				</div>
+
+				<div style="margin-bottom: 20px; width: 100%;">
+				<label id="messageLabel" style="color:#008080">Message*</label>
+				<br>
+				<br>
+				<input style="width:90%;height:100px;padding-left:20px;" class="textInput" type="text" name="massage" id="massage" placeholder="Your Message...." required onchange="validateMessage(this)">
+				<p id="messageErrorLabel" style="font-size: 75%;;visibility: hidden;margin-top: 10px;color: rgb(255, 0, 0);">
+					Missing Field
+				</p>
+				</div>
+
+				<div>
+				<input id="submit" style="width: 90%;height:35px;color:white;background-color:#008080;font-weight: bold;border: 1px solid black;border-radius: 5px;" type="submit" name="submit" value="Submit">
+				</div>
+				<div style="height: 40px"></div>
+			</form>
+			</div>
+		</div>
+		
+	</div>
+
+
+	<script type="text/javascript">
+		
+		let validFormatEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+	
+		function validateName(nameInput){
+			let name = nameInput.value;
+			var nameErrorLabel = document.getElementById("nameErrorLabel");
+
+			if(name === ""){
+				nameErrorLabel.style.visibility = "visible";
+				return false;
+			}
+			nameErrorLabel.style.visibility = "hidden";
+		}
+
+		function validateMessage(messageInput){
+			let message = messageInput.value;
+			var messageErrorLabel = document.getElementById("messageErrorLabel");
+			if(message === ""){
+				messageErrorLabel.style.visibility = "visible";
+				return false;
+			} 
+			messageErrorLabel.style.visibility = "hidden";
+		}
+
+		function validateEmail(emailInput){
+			var emailErrorLabel = document.getElementById("emailErrorLabel");
+
+			if(!emailInput.value.match(validFormatEmail)){
+				emailErrorLabel.style.visibility = "visible";
+				return false;
+			}
+			emailErrorLabel.style.visibility = "hidden";
+			}
+
+		
+	</script>
+
+
 </body>
 </html>
-<section>
-       <img src="shield.jpg" alt="shield cafe">
-
-    </section>
-<div>
-
-    <a href="home.html"> HOME </a> </br>
-    <a href=" about.html"> ABOUT </a> </br>
-    <a href=" location.html"> LOCATION </a> </br>
-    <a href=" booktable.html"> BOOK TABLE </a> </br>
-    <a href=" order.html"> ORDER ONLINE</a> </br>
-    <a href=" feedback.html"> FEEDBACK</a> </br>
-
-</div>
