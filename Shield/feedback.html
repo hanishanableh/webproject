@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title>FeedBack</title>
+	<style >
+		.errorIcon{
+			height: 2%;width: 2%;  vertical-align: middle;
+		}
+		</style>
+	 
+	
+</head>
+<body>
+	<div style="width: 100%; height: 600px;">
+		
+		<div class="left-div">
+			<div style="height: 180px; text-align:center;">
+				<img src="shield.jpg" style="width:120px;height: 180px;margin-bottom: 0px;">
+			</div>
+			<div style="text-align:center;">
+				<h2 style="margin-top: 50px;">
+					<a href="home.html" style="color: black;">HOME</a>
+				</h2>
+				<h2>
+					<a href="about.html" style="color: black;">ABOUT</a>
+				</h2>
+				<h2>
+					<a href="location.html" style="color: black;">LOCATION</a>
+				</h2>
+				<h2>
+					<a href="booktable.html"  style="color: black;">BOOK TABLE</a>
+				</h2>
+				<h2>
+					<a href="order.html" style="color: black;">ORDER ONLINE</a>
+				</h2>
+				<h2>
+					<a href="feedback.html" style="color: black;">FEED BACK</a>
+				</h2>
+			</div>
+			<div class="footer" style="text-align: center;">
+				<a href="#"><i class="fab fa-facebook-f"></i></a>
+				<a href="#"><i class="fab fa-instagram"></i></a>
+				<a href="#"><i class="fab fa-tiktok"></i></a>
+			</div>
+		</div>
+
+
+		<div class="right-div" >
+			<div style="text-align: center;margin: auto;"><h1>FEED BACK</h1></div>
+
+			<div>
+			<form method="POST" action="addFeedbackToDB.php">
+
+				<div style="margin-bottom: 50px; width: 100%;">
+				<label for="name" style="color:#008080">Name*</label>
+				<br>
+				<br>
+				<input class="textInput" style="width:90%;height:35px;padding-left: 20px;"  type="text" name="name" id="name" placeholder="Your Name..." oninput="validateName(this)" required  >
+				<p id="nameErrorLabel" style="line-height: 3%; visibility: hidden;margin-top: 10px;color: rgb(255, 0, 0);">
+
+				  <img class="errorIcon" src ="errorIcon.svg" /> 
+				Not Valid</p>
+				</div>
+
+				<div style="margin-bottom: 50px; width: 100%;">
+				<label for="email" style="color:#008080">Email Address*</label>
+				<br>
+				<br>
+				<input class="textInput" style="width:90%;height:35px;padding-left:20px"  type="text" name="email" id="email" placeholder="Your Email Address..." required oninput="hideEmailError(this)" onchange="validateEmail(this)">
+				<p id="emailErrorLabel" l style="line-height: 3%; visibility: hidden;margin-top: 10px;color: rgb(255, 0, 0);">
+				  <img class="errorIcon" src ="errorIcon.svg" /> 
+				Not Valid</p>
+				</div>
+
+				<div style="margin-bottom: 20px; width: 100%;">
+				<label style="color:#008080">Message*</label>
+				<br>
+				<br>
+				<input style="width:90%;height:100px;padding-left:20px;" class="textInput" type="text" name="massage" id="massage" placeholder="Your Message...." required oninput="validateMessage(this)">
+				<p id="messageErrorLabel" style="visibility: hidden;margin-top: 10px;color: rgb(255, 0, 0);">
+				<img class="errorIcon" src ="errorIcon.svg" /> 
+					Message Can't be Empty
+				</p>
+				</div>
+				<div>
+				<input style="width: 90%;height:35px;color:white;background-color:#008080;font-weight: bold;border: 1px solid black;border-radius: 5px;" type="submit" onsubmit="test(this)" name="submit"  onclick="submitData()" value="Submit">
+				</div>
+				<div style="height: 40px"></div>
+			</form>
+			</div>
+		</div>
+		
+	</div>
+
+	<script type="text/javascript">
+
+	
+		var errorBorder = "solid indianred";
+		
+		let emailRgx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+
+		function submitData() {
+			validateName(document.getElementById("name"));
+			validateEmail(document.getElementById("email"));
+			validateMessage(document.getElementById("massage"));
+		}
+
+		function hideEmailError(emailInput) {
+			var emailErrorLabel = document.getElementById("emailErrorLabel");
+			emailErrorLabel.style.visibility = "hidden";
+		}
+
+		function validateName(nameInput){
+			let name = nameInput.value;
+			var nameErrorLabel = document.getElementById("nameErrorLabel");
+			if(name.trim() === ""){
+				nameInput.style.border =  "none";
+				nameInput.style.border =  errorBorder;
+				nameErrorLabel.style.visibility = "visible";
+				return false;
+			}
+			else{
+				nameInput.style.border=  "revert";
+				nameErrorLabel.style.visibility = "hidden";
+			}
+		}
+
+		function validateMessage(messageInput){
+			let message = messageInput.value;
+			var messageErrorLabel = document.getElementById("messageErrorLabel");
+			if(message.trim() === ""){
+				messageInput.style.border=  errorBorder;
+				messageErrorLabel.style.visibility = "visible";
+				return false;
+			} 
+			else{
+				messageErrorLabel.style.visibility = "hidden";
+				messageInput.style.border = "revert";
+			}
+			
+		}
+
+		function validateEmail(emailInput){
+			var emailErrorLabel = document.getElementById("emailErrorLabel");
+			if(emailInput.value.match(emailRgx)){
+				emailErrorLabel.style.visibility = "hidden";
+				emailInput.style.border = "revert";
+				return true;
+			}
+			else{
+				emailInput.style.border = errorBorder;	
+				emailErrorLabel.style.visibility = "visible";
+				return false;
+			}
+			
+		}
+
+		
+	</script>
+</body>
+</html>
